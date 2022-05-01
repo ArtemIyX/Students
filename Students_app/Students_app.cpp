@@ -1,9 +1,10 @@
 ﻿
 
 #include <iostream>
-
+#include "Tools.h"
 int main()
 {
-    std::cout << "Hello World!\n";
+	std::string a = "253gsdf";
+	std::cout << String::format("hello %s", a.c_str());
 }
 

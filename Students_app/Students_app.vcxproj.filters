@@ -34,14 +34,14 @@
     <Filter Include="Исходные файлы\Private\Core">
       <UniqueIdentifier>{1a6861af-d26d-4e88-8e71-d2ba336e898b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\Private\Misc">
-      <UniqueIdentifier>{e4d7da2d-3715-4fab-8a25-6f027f617ba0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Исходные файлы\Public\Core">
       <UniqueIdentifier>{6610ac94-2de6-4cca-8246-491e8c1878a7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Исходные файлы\Public\Misc">
       <UniqueIdentifier>{7bd2e7bc-01db-45f4-8d40-86bc76ab8a95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Private\Misc">
+      <UniqueIdentifier>{e4d7da2d-3715-4fab-8a25-6f027f617ba0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -59,6 +59,12 @@
     </ClCompile>
     <ClCompile Include="Department.cpp">
       <Filter>Исходные файлы\Private\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Исходные файлы\Private\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +85,15 @@
     </ClInclude>
     <ClInclude Include="Student.h">
       <Filter>Исходные файлы\Public\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Исходные файлы\Public\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Application.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Tools.h">
+      <Filter>Исходные файлы\Public\Misc</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

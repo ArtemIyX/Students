@@ -34,6 +34,7 @@ public:
 			return false;
 		}
 		Instances.push_back(Instance);
+		return true;
 	}
 
 	bool HasInstance(T* Target) {
