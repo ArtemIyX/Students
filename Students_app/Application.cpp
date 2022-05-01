@@ -3,7 +3,7 @@
 #include "Manager.h"
 #include "MenuPosition.h"
 #include "Tools.h"
-
+#include "Constants.h"
 
 UApplication::UApplication()
 {
@@ -21,7 +21,8 @@ std::vector<UMenuPosition*> UApplication::GenerateMenuPositions()
 {
 	UMenuPosition* MainMenu = UMenuPosition::CreateMenuPosition(
 		{ FMenuFunction("Groups", std::bind(&UApplication::Group_Section, this)),
-		FMenuFunction("Departments", std::bind(&UApplication::Department_Section, this)) },
+		FMenuFunction("Departments", std::bind(&UApplication::Department_Section, this)),
+		FMenuFunction("Students", std::bind(&UApplication::Student_Section, this)) },
 		"Main menu", nullptr);
 	UMenuPosition* Groups = UMenuPosition::CreateMenuPosition(
 		{ FMenuFunction("Show list of groups", [this]() { Group_Show();  Menu->Wait(); }),
@@ -35,8 +36,12 @@ std::vector<UMenuPosition*> UApplication::GenerateMenuPositions()
 		FMenuFunction("Remove department", std::bind(&UApplication::Department_Remove, this)),
 		FMenuFunction("Edit department", std::bind(&UApplication::Department_Edit, this)) },
 		"Departments", MainMenu);
+	UMenuPosition* Students = UMenuPosition::CreateMenuPosition(
+		{ FMenuFunction("Show list of students", [this]() { Student_Show();  Menu->Wait(); }),
+		FMenuFunction("Add new student", std::bind(&UApplication::Student_Add, this)) },
+		"Students", MainMenu);
 	return {
-		MainMenu, Groups, Departments
+		MainMenu, Groups, Departments, Students
 	};
 }
 
@@ -75,6 +80,65 @@ void UApplication::Select(uint16_t& index, bool& undo)
 			Menu->Warn("Try again");
 		}
 	}
+}
+
+int UApplication::GetInt(const std::string& Prompt, int min, int max)
+{
+	std::string input;
+	int res = 0;
+	while (true)
+	{
+		Menu->Print(Prompt);
+		input.clear();
+		std::cin >> input;
+		try
+		{
+			res = std::stoi(input);
+			if (res == -1) 
+			{
+				return -1;
+			}
+			if (res < min || res > max)
+			{
+				throw std::exception();
+			}
+			return res;
+		}
+		catch (...)
+		{
+			Menu->Print("Try again\n");
+		}
+	}
+	return -1;
+}
+
+std::string UApplication::GetString(const std::string& Prompt)
+{
+	Menu->Print(Prompt);
+	std::string input;
+	std::cin >> input;
+	return input;
+}
+
+bool UApplication::GetBool(const std::string& Prompt)
+{
+	char ch;
+	while (true) 
+	{
+		Menu->Print(String::format("%s (y/n)", Prompt.c_str()));
+		std::cin >> ch;
+		if (ch == Constants::Misc::yes1 || ch == Constants::Misc::yes2) 
+		{
+			return true;
+		}
+		else if (ch == Constants::Misc::no1 || ch == Constants::Misc::no2)
+		{
+			return false;
+		}
+		Menu->Print("Try again\n");
+	}
+	
+	return false; //never call this
 }
 
 void UApplication::StartCycle()

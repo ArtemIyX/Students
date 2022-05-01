@@ -11,9 +11,7 @@ void UApplication::Department_Section()
 
 void UApplication::Department_Add()
 {
-	Menu->Print(ApplicationMessages::Departments::MSG_Enter);
-	std::string input;
-	std::cin >> input; // change on getline
+	std::string input = GetString(ApplicationMessages::Departments::MSG_Enter);
 
 	FDepartment info(input);
 	UDepartment* department = UDepartment::CreateDepartment(info);
@@ -75,9 +73,7 @@ void UApplication::Department_Edit()
 	if (undo) {
 		return;
 	}
-	Menu->Print(ApplicationMessages::Departments::MSG_Enter);
-	std::string input;
-	std::cin >> input;
+	std::string input = GetString(ApplicationMessages::Departments::MSG_Enter);
 	FDepartment& data = dep->GetData();
 	data.Title = input;
 	Menu->Print(ApplicationMessages::Departments::MSG_Edit);
@@ -88,3 +84,5 @@ bool UApplication::Department_Check()
 {
 	return Manager->GetDepartmentManager()->GetAllInstances().size() != 0;
 }
+
+

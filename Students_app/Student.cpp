@@ -33,7 +33,8 @@ UStudent::UStudent(UStudent* Other)
 	this->Data = Other->Data;
 }
 
-const FStudent& UStudent::GetData() const
+
+FStudent& UStudent::GetData()
 {
 	return Data;
 }

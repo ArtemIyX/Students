@@ -10,9 +10,7 @@ void UApplication::Group_Section()
 
 void UApplication::Group_Add()
 {
-	Menu->Print(ApplicationMessages::Group::MSG_Enter);
-	std::string input;
-	std::cin >> input; // change on getline
+	std::string input = GetString(ApplicationMessages::Group::MSG_Enter);
 
 	FGroup info(input);
 	UGroup* group = UGroup::CreateGroup(info);
@@ -74,9 +72,7 @@ void UApplication::Group_Edit()
 	if (undo) {
 		return;
 	}
-	Menu->Print(ApplicationMessages::Group::MSG_Enter);
-	std::string input;
-	std::cin >> input;
+	std::string input = GetString(ApplicationMessages::Group::MSG_Enter);
 	FGroup& data = group->GetData();
 	data.Title = input;
 	Menu->Print(ApplicationMessages::Group::MSG_Edit);

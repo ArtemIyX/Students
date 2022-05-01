@@ -23,11 +23,22 @@ namespace ApplicationMessages
 
 	namespace Departments
 	{
-		const std::string MSG_Name = "Department: \n";
+		const std::string MSG_Name = "Departments: \n";
 		const std::string MSG_Rem = "Department successfully removed\n";
 		const std::string MSG_Edit = "Department successfully edited\n";
 		const std::string MSG_Enter = "Enter Department name: ";
 		const std::string MSG_No = "There are no Departments\n";
+	}
+	namespace Student
+	{
+		const std::string MSG_Name = "Students: \n";
+		const std::string MSG_Rem = "Student successfully removed\n";
+		const std::string MSG_Edit = "Student successfully edited\n";
+		const std::string MSG_Enter_Name = "Enter Student name: ";
+		const std::string MSG_Enter_Age = "Enter Student age: ";
+		const std::string MSG_Enter_Group = "Select group for student:\n";
+		const std::string MSG_Enter_Department = "Enter department for student:\n";
+		const std::string MSG_No = "There are no Students\n";
 	}
 	
 }
@@ -40,8 +51,16 @@ public:
 private:
 	UMenu* Menu;
 	UManager* Manager;
+private:
+	int GetInt(const std::string& Prompt, int min, int max);
+	std::string GetString(const std::string& Prompt);
+	bool GetBool(const std::string& Prompt);
+
 protected:
 	std::vector<UMenuPosition*> GenerateMenuPositions();
+protected:
+	
+
 	void StartCycle();
 	void Select(uint16_t& index, bool& undo);
 	void Group_Section();
@@ -58,31 +77,25 @@ protected:
 	void Department_Edit();
 	bool Department_Check();
 
+	void Student_Section();
+	void Student_Add();
+	void Student_Show();
+	void Student_Remove();
+	void Student_Edit();
+	bool Student_Check();
+
 
 	template<typename T>
 	T* SelectInstance(UInstanceManager<T>* instanceManager, std::function<void()> DrawFunc, uint16_t& Position, bool& undo)
 	{
+		undo = false;
 		int index = 0;
 		while (true)
 		{
 			Menu->ClearScreen();
 			DrawFunc();
 
-			undo = false;
-
-			while (true) {
-				Menu->Print(MenuMessages::MSG_Select);
-				std::string input;
-				std::cin >> input;
-				try {
-					index = std::stoi(input);
-					break;
-				}
-				catch (std::exception ex) {
-					Menu->Warn("Try again");
-				}
-			}
-
+			index = GetInt(MenuMessages::MSG_Select, 1, instanceManager->GetAllInstances().size());
 			if (index == -1) {
 				undo = true;
 				Position = 0;
