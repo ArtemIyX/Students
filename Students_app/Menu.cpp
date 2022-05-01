@@ -53,7 +53,7 @@ uint16_t UMenu::Select(size_t MenuPositionIndex, bool& undo)
 			undo = true;
 			return -1;
 		}
-		if (!(index < 1 || index > MenuPositions[MenuPositionIndex]->GetFunctions().size())) {
+		if (!(index < 1 || static_cast<size_t>(index) > MenuPositions[MenuPositionIndex]->GetFunctions().size())) {
 			return index;
 		}
 		else {
@@ -84,6 +84,16 @@ UMenuPosition* UMenu::GetCurrentMenuPosition() const
 	return CurrentMenuPosition;
 }
 
+UMenuPosition* UMenu::GetMenuPosition(size_t index) const
+{
+	return MenuPositions[index];
+}
+
+void UMenu::ChangeMenuPosition(size_t index)
+{
+	CurrentMenuPosition = MenuPositions[index];
+}
+
 void UMenu::Init(std::vector<UMenuPosition*> MenuPositions)
 {
 	this->MenuPositions = MenuPositions;
@@ -96,9 +106,10 @@ void UMenu::Draw(size_t MenuPositionIndex)
 	const std::vector<FMenuFunction>& Functions = position->GetFunctions();
 	const size_t size = Functions.size();
 	if (size == 0) {
-		Print(MenuMessages::MSG_NoFunctions);
+		Print(MenuMessages::MSG_NoFunctions); //never call this
 		return;
 	}
+	Print(String::format("=========\t%s\t=========\n", position->GetTitle().c_str()));
 	for (size_t i = 0; i < size; ++i) {
 		Print(String::format("[%d]\t%s\n", i + 1, Functions[i].Title.c_str()));
 	}

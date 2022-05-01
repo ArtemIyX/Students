@@ -42,5 +42,7 @@ public:
 	int GetCurrentMenuPositionIndex() const;
 	void SetCurrentMenuPosition(UMenuPosition* MenuPosition);
 	UMenuPosition* GetCurrentMenuPosition() const;
+	UMenuPosition* GetMenuPosition(size_t index) const;
+	void ChangeMenuPosition(size_t index);
 };
 

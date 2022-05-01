@@ -12,11 +12,11 @@ private:
 	UMenu* Menu;
 	UManager* Manager;
 protected:
-	std::vector<UMenuPosition*> MenuPositions;
-protected:
 	std::vector<UMenuPosition*> GenerateMenuPositions();
 	void StartCycle();
 	void TestFunc();
+	void GroupSection();
+	void Group_Add();
 public:
 	UMenu* GetMenu() const;
 	UManager* GetManager() const;
