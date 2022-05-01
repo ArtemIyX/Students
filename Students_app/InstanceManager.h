@@ -6,7 +6,7 @@ class UInstanceManager
 {
 public:
 	UInstanceManager() {}
-	~UInstanceManager() 
+	~UInstanceManager()
 	{
 		ClearData();
 	}
@@ -17,9 +17,9 @@ private:
 	void ClearData()
 	{
 		const size_t size = Instances.size();
-		for (size_t i = 0; i < size; ++i) 
+		for (size_t i = 0; i < size; ++i)
 		{
-			if (Instances[i]) 
+			if (Instances[i])
 			{
 				delete Instances[i];
 				Instances[i] = nullptr;
@@ -28,12 +28,12 @@ private:
 		Instances.clear();
 	}
 public:
-	bool AddInstance(T* Instance) 
+	bool AddInstance(T* Instance)
 	{
 		if (!Instance) {
 			return false;
 		}
-		if (HasInstance(Instance)) 
+		if (HasInstance(Instance))
 		{
 			return false;
 		}
@@ -41,13 +41,13 @@ public:
 		return true;
 	}
 
-	bool HasInstance(T* Target) 
+	bool HasInstance(T* Target)
 	{
-		for (T* instance : Instances) 
+		for (T* instance : Instances)
 		{
-			if (instance) 
+			if (instance)
 			{
-				if (instance == Target) 
+				if (instance == Target)
 				{
 					return true;
 				}
@@ -55,11 +55,32 @@ public:
 		}
 		return false;
 	}
-	const std::vector<T*>& GetAllInstances() const 
+	
+	void RemoveInstance(T* target)
+	{
+		size_t index = 0;
+		for (size_t i = 0; i < Instances.size(); ++i) 
+		{
+			if (Instances[i] == target) {
+				RemoveInstanceAt(i);
+				return;
+			}
+		}
+	}
+
+	void RemoveInstanceAt(size_t index) 
+	{
+		delete Instances[index];
+		Instances[index] = nullptr;
+		Instances.erase(std::begin(Instances) + index);
+	}
+
+	const std::vector<T*>& GetAllInstances() const
 	{
 		return Instances;
 	}
-	T* GetInstance(size_t index) const 
+
+	T* GetInstance(size_t index) const
 	{
 		return Instances[index];
 	}

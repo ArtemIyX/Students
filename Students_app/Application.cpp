@@ -1,10 +1,9 @@
 #include "Application.h"
-#include <iostream>
-#include "Menu.h"
+
 #include "Manager.h"
 #include "MenuPosition.h"
 #include "Tools.h"
-#include "Group.h"
+
 
 UApplication::UApplication()
 {
@@ -24,8 +23,9 @@ std::vector<UMenuPosition*> UApplication::GenerateMenuPositions()
 		{ FMenuFunction("Groups", std::bind(&UApplication::GroupSection, this)) },
 		"Main menu", nullptr);
 	UMenuPosition* Groups = UMenuPosition::CreateMenuPosition(
-		{ FMenuFunction("Show list of groups", std::bind(&UApplication::Group_Show, this)),
-		FMenuFunction("Add new group", std::bind(&UApplication::Group_Add, this)) },
+		{ FMenuFunction("Show list of groups", [this]() { Group_Show();  Menu->Wait(); }),
+		FMenuFunction("Add new group", std::bind(&UApplication::Group_Add, this)),
+		FMenuFunction("Remove group", std::bind(&UApplication::Group_Remove, this)) },
 		"Groups", MainMenu);
 	return {
 		MainMenu, Groups
@@ -51,6 +51,23 @@ void UApplication::Run()
 	StartCycle();
 }
 
+void UApplication::Select(uint16_t& index, bool& undo)
+{
+	int menuIndex = Menu->GetCurrentMenuPositionIndex();
+	index = 0;
+	undo = false;
+	while (true) {
+		Menu->ClearScreen();
+		Menu->Draw(menuIndex);
+		try {
+			index = Menu->Select(menuIndex, undo);
+			break;
+		}
+		catch (std::exception ex) {
+			Menu->Warn("Try again");
+		}
+	}
+}
 
 void UApplication::StartCycle()
 {
@@ -64,17 +81,7 @@ void UApplication::StartCycle()
 
 		uint16_t index = 0;
 		bool undo = false;
-		while (true) {
-			Menu->ClearScreen();
-			Menu->Draw(menuIndex);
-			try {
-				index = Menu->Select(menuIndex, undo);
-				break;
-			}
-			catch (std::exception ex) {
-				Menu->Warn("Try again");
-			}
-		}
+		Select(index, undo);
 
 		if (undo) {
 			if (UMenuPosition* menuPos = Menu->GetCurrentMenuPosition()->GetOwner()) {
@@ -122,7 +129,6 @@ void UApplication::Group_Show()
 	const size_t size = groups.size();
 	if (size == 0) {
 		Menu->Print(ApplicationMessages::MSG_No_Groups);
-		Menu->Wait();
 		return;
 	}
 	Menu->Print(ApplicationMessages::MSG_Groups);
@@ -132,5 +138,27 @@ void UApplication::Group_Show()
 		const FGroup& data = group->GetData();
 		Menu->Print(String::format("[%d]\t%s\n", i+1, data.Title.c_str()));
 	}
+}
+
+void UApplication::Group_Remove()
+{
+	const std::vector<UGroup*> groups = Manager->GetGroupManager()->GetAllInstances();
+	const size_t size = groups.size();
+	if (size == 0) {
+		Menu->Print(ApplicationMessages::MSG_No_Groups);
+		Menu->Wait();
+		return;
+	}
+	UInstanceManager<UGroup>* groupManager = Manager->GetGroupManager();
+	uint16_t index = 0;
+	bool undo = false;
+	UGroup* group = SelectInstance<UGroup>(groupManager, std::bind(&UApplication::Group_Show, this), index, undo);
+	if (undo) {
+		return;
+	}
+	groupManager->RemoveInstanceAt(index - 1);
+	Menu->Print(ApplicationMessages::MSG_Rem_Group);
 	Menu->Wait();
 }
+
+
