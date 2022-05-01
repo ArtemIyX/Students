@@ -29,7 +29,7 @@ UDepartment::UDepartment(UDepartment* Other) : UDepartment(Data)
 {
 }
 
-const FDepartment& UDepartment::GetData() const
+FDepartment& UDepartment::GetData() 
 {
 	return Data;
 }

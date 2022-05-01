@@ -22,7 +22,7 @@ public:
 protected:
 	FDepartment Data;
 public:
-	const FDepartment& GetData() const;
+	FDepartment& GetData();
 	static UDepartment* CreateDepartment(const FDepartment& InData);
 };
 

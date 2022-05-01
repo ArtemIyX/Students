@@ -2,6 +2,7 @@
 #include "InstanceManager.h"
 class UStudent;
 class UGroup;
+class UDepartment;
 
 class UManager
 {
@@ -10,10 +11,12 @@ public:
 	~UManager();
 
 protected:
-	UInstanceManager<class UStudent>* StudentsManager;
-	UInstanceManager<class UGroup>* GroupManager;
+	UInstanceManager<UStudent>* StudentsManager;
+	UInstanceManager<UGroup>* GroupManager;
+	UInstanceManager<UDepartment>* DepartmentManager;
 public:
-	UInstanceManager<class UStudent>* GetStudentsManager() const;
-	UInstanceManager<class UGroup>* GetGroupManager() const;
+	UInstanceManager<UStudent>* GetStudentsManager() const;
+	UInstanceManager<UGroup>* GetGroupManager() const;
+	UInstanceManager<UDepartment>* GetDepartmentManager() const;
 };
 

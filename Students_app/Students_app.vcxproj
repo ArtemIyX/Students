@@ -141,6 +141,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Application_Department.cpp" />
     <ClCompile Include="Application_Group.cpp" />
     <ClCompile Include="Department.cpp" />
     <ClCompile Include="Group.cpp" />

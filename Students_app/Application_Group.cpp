@@ -3,7 +3,7 @@
 #include "MenuPosition.h"
 #include "Tools.h"
 
-void UApplication::GroupSection()
+void UApplication::Group_Section()
 {
 	Menu->ChangeMenuPosition(1); //TODO: Change magic numbers
 }
@@ -87,3 +87,5 @@ bool UApplication::Group_Check()
 {
 	return Manager->GetGroupManager()->GetAllInstances().size() != 0;
 }
+
+

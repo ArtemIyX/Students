@@ -20,7 +20,8 @@ UApplication::~UApplication()
 std::vector<UMenuPosition*> UApplication::GenerateMenuPositions()
 {
 	UMenuPosition* MainMenu = UMenuPosition::CreateMenuPosition(
-		{ FMenuFunction("Groups", std::bind(&UApplication::GroupSection, this)) },
+		{ FMenuFunction("Groups", std::bind(&UApplication::Group_Section, this)),
+		FMenuFunction("Departments", std::bind(&UApplication::Department_Section, this)) },
 		"Main menu", nullptr);
 	UMenuPosition* Groups = UMenuPosition::CreateMenuPosition(
 		{ FMenuFunction("Show list of groups", [this]() { Group_Show();  Menu->Wait(); }),
@@ -28,8 +29,14 @@ std::vector<UMenuPosition*> UApplication::GenerateMenuPositions()
 		FMenuFunction("Remove group", std::bind(&UApplication::Group_Remove, this)),
 		FMenuFunction("Edit group", std::bind(&UApplication::Group_Edit, this)) },
 		"Groups", MainMenu);
+	UMenuPosition* Departments = UMenuPosition::CreateMenuPosition(
+		{ FMenuFunction("Show list of departments", [this]() { Department_Show();  Menu->Wait(); }),
+		FMenuFunction("Add new department", std::bind(&UApplication::Department_Add, this)),
+		FMenuFunction("Remove department", std::bind(&UApplication::Department_Remove, this)),
+		FMenuFunction("Edit department", std::bind(&UApplication::Department_Edit, this)) },
+		"Departments", MainMenu);
 	return {
-		MainMenu, Groups
+		MainMenu, Groups, Departments
 	};
 }
 

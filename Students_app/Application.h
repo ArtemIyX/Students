@@ -20,6 +20,15 @@ namespace ApplicationMessages
 		const std::string MSG_Enter = "Enter group name: ";
 		const std::string MSG_No = "There are no groups\n";
 	}
+
+	namespace Departments
+	{
+		const std::string MSG_Name = "Department: \n";
+		const std::string MSG_Rem = "Department successfully removed\n";
+		const std::string MSG_Edit = "Department successfully edited\n";
+		const std::string MSG_Enter = "Enter Department name: ";
+		const std::string MSG_No = "There are no Departments\n";
+	}
 	
 }
 
@@ -35,12 +44,19 @@ protected:
 	std::vector<UMenuPosition*> GenerateMenuPositions();
 	void StartCycle();
 	void Select(uint16_t& index, bool& undo);
-	void GroupSection();
+	void Group_Section();
 	void Group_Add();
 	void Group_Show();
 	void Group_Remove();
 	void Group_Edit();
 	bool Group_Check();
+
+	void Department_Section();
+	void Department_Add();
+	void Department_Show();
+	void Department_Remove();
+	void Department_Edit();
+	bool Department_Check();
 
 
 	template<typename T>
