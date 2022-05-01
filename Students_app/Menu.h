@@ -11,6 +11,9 @@ namespace MenuMessages
 
 struct FMenuFunction
 {
+	FMenuFunction();
+	FMenuFunction(std::string Title, std::function<void()> Func);
+
 	std::string Title;
 	std::function<void()> Func;
 	friend std::ostream& operator<<(std::ostream& os, const FMenuFunction& mf);
@@ -19,15 +22,15 @@ struct FMenuFunction
 class UMenu
 {
 public:
+	UMenu();
 	UMenu(const std::vector<FMenuFunction>& Functions);
 protected:
 	std::vector<FMenuFunction> Functions;
-protected:
-	void Print(const std::string& msg);
-	void Warn(const std::string& msg);
+	
 public:
 	void Init(const std::vector<FMenuFunction>& Functions);
 	void Draw();
-
+	void Print(const std::string& msg);
+	void Warn(const std::string& msg);
 };
 

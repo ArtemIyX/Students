@@ -1,7 +1,8 @@
 #include "Menu.h"
-#include "Tools.h"
-#include <iostream>
 
+#include <iostream>
+#include "Tools.h"
+#include "Constants.h"
 
 
 std::ostream& operator<<(std::ostream& os, const FMenuFunction& mf)
@@ -10,6 +11,10 @@ std::ostream& operator<<(std::ostream& os, const FMenuFunction& mf)
 	return os;
 }
 
+
+UMenu::UMenu()
+{
+}
 
 UMenu::UMenu(const std::vector<FMenuFunction>& Functions)
 {
@@ -45,3 +50,14 @@ void UMenu::Draw()
 	}
 }
 
+
+FMenuFunction::FMenuFunction()
+{
+	Title = Constants::Misc::NAME_None;
+}
+
+FMenuFunction::FMenuFunction(std::string Title, std::function<void()> Func)
+{
+	this->Title = Title;
+	this->Func = Func;
+}

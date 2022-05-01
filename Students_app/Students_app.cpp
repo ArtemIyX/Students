@@ -1,10 +1,13 @@
 ﻿
 
 #include <iostream>
-#include "Tools.h"
+#include "Application.h"
+
 int main()
 {
-	std::string a = "253gsdf";
-	std::cout << String::format("hello %s", a.c_str());
+	UApplication* app = new UApplication();
+	app->Run();
+
+	delete app;
 }
 
