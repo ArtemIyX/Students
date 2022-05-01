@@ -55,12 +55,13 @@ void UApplication::Student_Add()
 
 void UApplication::Student_Show()
 {
-	const std::vector<UStudent*> students = Manager->GetStudentsManager()->GetAllInstances();
+	
 	if (!Student_Check()) 
 	{
 		Menu->Print(ApplicationMessages::Student::MSG_No);
 		return;
 	}
+	const std::vector<UStudent*> students = Manager->GetStudentsManager()->GetAllInstances();
 	for (size_t i = 0; i < students.size(); ++i) 
 	{
 		FStudent& data = students[i]->GetData();
@@ -75,6 +76,21 @@ void UApplication::Student_Show()
 
 void UApplication::Student_Remove()
 {
+	if (!Student_Check())
+	{
+		Menu->Print(ApplicationMessages::Student::MSG_No);
+		return;
+	}
+	UInstanceManager<UStudent>* studentsManager = Manager->GetStudentsManager();
+	uint16_t index = 0;
+	bool undo = false;
+	UStudent* student = SelectInstance<UStudent>(studentsManager, std::bind(&UApplication::Student_Show, this), index, undo);
+	if (undo) {
+		return;
+	}
+	studentsManager->RemoveInstanceAt(index - 1);
+	Menu->Print(ApplicationMessages::Student::MSG_Rem);
+	Menu->Wait();
 }
 
 void UApplication::Student_Edit()
