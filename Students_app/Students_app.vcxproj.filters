@@ -19,36 +19,60 @@
     <Filter Include="Исходные файлы\Data">
       <UniqueIdentifier>{0d7452a0-b4c7-452c-bfaf-96e5e3e2aba5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Public">
+      <UniqueIdentifier>{e1db3d53-799e-4643-9f11-9467333cd2ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Private">
+      <UniqueIdentifier>{a46db8ee-591f-4d94-bfc3-0b66befa9c77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Public\Data">
+      <UniqueIdentifier>{8af09389-dd8b-4bcf-8e4d-514e93585386}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Private\Data">
+      <UniqueIdentifier>{9ae894b6-7667-47d4-9a00-e1e6bcf48a76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Private\Core">
+      <UniqueIdentifier>{1a6861af-d26d-4e88-8e71-d2ba336e898b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Private\Misc">
+      <UniqueIdentifier>{e4d7da2d-3715-4fab-8a25-6f027f617ba0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Public\Core">
+      <UniqueIdentifier>{6610ac94-2de6-4cca-8246-491e8c1878a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Public\Misc">
+      <UniqueIdentifier>{7bd2e7bc-01db-45f4-8d40-86bc76ab8a95}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Students_app.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Group.cpp">
+      <Filter>Исходные файлы\Private\Data</Filter>
+    </ClCompile>
     <ClCompile Include="Student.cpp">
-      <Filter>Исходные файлы\Data</Filter>
+      <Filter>Исходные файлы\Private\Data</Filter>
     </ClCompile>
     <ClCompile Include="Manager.cpp">
-      <Filter>Исходные файлы\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Group.cpp">
-      <Filter>Исходные файлы\Data</Filter>
+      <Filter>Исходные файлы\Private\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Student.h">
-      <Filter>Исходные файлы\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="Constants.h">
-      <Filter>Исходные файлы\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="Manager.h">
-      <Filter>Исходные файлы\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="InstanceManager.h">
-      <Filter>Исходные файлы\Core</Filter>
+      <Filter>Исходные файлы\Public\Data</Filter>
     </ClInclude>
     <ClInclude Include="Group.h">
-      <Filter>Исходные файлы\Data</Filter>
+      <Filter>Исходные файлы\Public\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Constants.h">
+      <Filter>Исходные файлы\Public\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager.h">
+      <Filter>Исходные файлы\Public\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="InstanceManager.h">
+      <Filter>Исходные файлы\Public\Misc</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
