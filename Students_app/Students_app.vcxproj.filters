@@ -69,6 +69,9 @@
     <ClCompile Include="MenuPosition.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Application_Group.cpp">
+      <Filter>Исходные файлы\Private\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Group.h">
