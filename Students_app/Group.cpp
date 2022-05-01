@@ -9,11 +9,6 @@ FGroup::FGroup(std::string Title)
 	this->Title = Title;
 }
 
-FGroup::FGroup(const FGroup& Other) : FGroup(Title)
-{
-	
-}
-
 
 UGroup::UGroup()
 {
@@ -39,3 +34,9 @@ UGroup* UGroup::CreateGroup(const UGroup& InData)
 	UGroup* object = new UGroup(InData);
 	return object;
 }
+
+//std::ostream& operator<<(std::ostream& os, const FGroup& group)
+//{
+//	os << group.Title;
+//	return os;
+//}

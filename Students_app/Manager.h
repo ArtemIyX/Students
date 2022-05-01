@@ -1,5 +1,7 @@
 #pragma once
 #include "InstanceManager.h"
+class UStudent;
+class UGroup;
 
 class UManager
 {
@@ -10,6 +12,8 @@ public:
 protected:
 	UInstanceManager<class UStudent>* StudentsManager;
 	UInstanceManager<class UGroup>* GroupManager;
-protected:
+public:
+	UInstanceManager<class UStudent>* GetStudentsManager() const;
+	UInstanceManager<class UGroup>* GetGroupManager() const;
 };
 

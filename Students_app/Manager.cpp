@@ -15,4 +15,14 @@ UManager::~UManager()
 		delete GroupManager;
 }
 
+UInstanceManager<class UStudent>* UManager::GetStudentsManager() const
+{
+	return StudentsManager;
+}
+
+UInstanceManager<class UGroup>* UManager::GetGroupManager() const
+{
+	return GroupManager;
+}
+
 

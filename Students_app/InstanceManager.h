@@ -17,8 +17,10 @@ private:
 	void ClearData()
 	{
 		const size_t size = Instances.size();
-		for (size_t i = 0; i < size; ++i) {
-			if (Instances[i]) {
+		for (size_t i = 0; i < size; ++i) 
+		{
+			if (Instances[i]) 
+			{
 				delete Instances[i];
 				Instances[i] = nullptr;
 			}
@@ -26,26 +28,39 @@ private:
 		Instances.clear();
 	}
 public:
-	bool AddInstance(T* Instance) {
+	bool AddInstance(T* Instance) 
+	{
 		if (!Instance) {
 			return false;
 		}
-		if (HasInstance(Instance)) {
+		if (HasInstance(Instance)) 
+		{
 			return false;
 		}
 		Instances.push_back(Instance);
 		return true;
 	}
 
-	bool HasInstance(T* Target) {
-		for (T* instance : Instances) {
-			if (instance) {
-				if (instance == Target) {
+	bool HasInstance(T* Target) 
+	{
+		for (T* instance : Instances) 
+		{
+			if (instance) 
+			{
+				if (instance == Target) 
+				{
 					return true;
 				}
 			}
 		}
 		return false;
 	}
-
+	const std::vector<T*>& GetAllInstances() const 
+	{
+		return Instances;
+	}
+	T* GetInstance(size_t index) const 
+	{
+		return Instances[index];
+	}
 };

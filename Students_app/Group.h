@@ -6,10 +6,10 @@ private:
 
 public:
 	FGroup();
-	FGroup(const FGroup& Other);
 	FGroup(std::string Title);
 public:
 	std::string Title;
+	//friend std::ostream& operator<<(std::ostream& os, const FGroup& group);
 };
 
 class UGroup
