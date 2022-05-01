@@ -38,7 +38,9 @@ std::vector<UMenuPosition*> UApplication::GenerateMenuPositions()
 		"Departments", MainMenu);
 	UMenuPosition* Students = UMenuPosition::CreateMenuPosition(
 		{ FMenuFunction("Show list of students", [this]() { Student_Show();  Menu->Wait(); }),
-		FMenuFunction("Add new student", std::bind(&UApplication::Student_Add, this)) },
+		FMenuFunction("Add new student", std::bind(&UApplication::Student_Add, this)),
+		FMenuFunction("Remove student", std::bind(&UApplication::Student_Remove, this)),
+		FMenuFunction("Edit student", std::bind(&UApplication::Student_Edit, this)) },
 		"Students", MainMenu);
 	return {
 		MainMenu, Groups, Departments, Students
@@ -125,7 +127,7 @@ bool UApplication::GetBool(const std::string& Prompt)
 	char ch;
 	while (true) 
 	{
-		Menu->Print(String::format("%s (y/n)", Prompt.c_str()));
+		Menu->Print(String::format("%s (y/n) ", Prompt.c_str()));
 		std::cin >> ch;
 		if (ch == Constants::Misc::yes1 || ch == Constants::Misc::yes2) 
 		{

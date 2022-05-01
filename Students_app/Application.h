@@ -39,6 +39,14 @@ namespace ApplicationMessages
 		const std::string MSG_Enter_Group = "Select group for student:\n";
 		const std::string MSG_Enter_Department = "Enter department for student:\n";
 		const std::string MSG_No = "There are no Students\n";
+
+		namespace Question
+		{
+			const std::string MSG_Edit_Name = "Edit name? ";
+			const std::string MSG_Edit_Age = "Edit age? ";
+			const std::string MSG_Edit_Group = "Edit group? ";
+			const std::string MSG_Edit_Dep = "Edit department? ";
+		}
 	}
 	
 }

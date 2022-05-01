@@ -58,9 +58,7 @@ void UApplication::Group_Remove()
 
 void UApplication::Group_Edit()
 {
-	const std::vector<UGroup*> groups = Manager->GetGroupManager()->GetAllInstances();
-	const size_t size = groups.size();
-	if (size == 0) {
+	if (!Group_Check()) {
 		Menu->Print(ApplicationMessages::Group::MSG_No);
 		Menu->Wait();
 		return;
