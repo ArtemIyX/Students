@@ -27,5 +27,6 @@ protected:
 	FStudent Data;
 public:
 	const FStudent& GetData() const;
+	static UStudent* CreateStudent(const FStudent& InData);
 };
 

@@ -1,4 +1,4 @@
-#include "UStudent.h"
+#include "Student.h"
 #include "Constants.h"
 FStudent::FStudent()
 {
@@ -32,6 +32,12 @@ UStudent::UStudent(UStudent* Other)
 const FStudent& UStudent::GetData() const
 {
 	return Data;
+}
+
+UStudent* UStudent::CreateStudent(const FStudent& InData)
+{
+	UStudent* object = new UStudent(InData);
+	return object;
 }
 
 

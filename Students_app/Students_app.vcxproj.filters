@@ -24,22 +24,28 @@
     <ClCompile Include="Students_app.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="UStudent.cpp">
+    <ClCompile Include="Student.cpp">
       <Filter>Исходные файлы\Data</Filter>
     </ClCompile>
+    <ClCompile Include="StudentsManager.cpp">
+      <Filter>Исходные файлы\Core</Filter>
+    </ClCompile>
     <ClCompile Include="Manager.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="UStudent.h">
+    <ClInclude Include="Student.h">
       <Filter>Исходные файлы\Data</Filter>
     </ClInclude>
     <ClInclude Include="Constants.h">
       <Filter>Исходные файлы\Data</Filter>
     </ClInclude>
+    <ClInclude Include="StudentsManager.h">
+      <Filter>Исходные файлы\Core</Filter>
+    </ClInclude>
     <ClInclude Include="Manager.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Исходные файлы\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

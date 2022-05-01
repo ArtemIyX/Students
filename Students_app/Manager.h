@@ -1,7 +1,8 @@
 #pragma once
-class Manager
+class UManager
 {
 public:
-	Manager();
+	
+protected:
 };
 

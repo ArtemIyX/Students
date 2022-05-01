@@ -140,13 +140,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Manager.cpp" />
+    <ClCompile Include="StudentsManager.cpp" />
     <ClCompile Include="Students_app.cpp" />
-    <ClCompile Include="UStudent.cpp" />
+    <ClCompile Include="Student.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Manager.h" />
-    <ClInclude Include="UStudent.h" />
+    <ClInclude Include="StudentsManager.h" />
+    <ClInclude Include="Student.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
