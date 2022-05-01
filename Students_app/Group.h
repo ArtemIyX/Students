@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "Entity.h"
 struct FGroup
 {
 private:
@@ -12,16 +13,16 @@ public:
 	//friend std::ostream& operator<<(std::ostream& os, const FGroup& group);
 };
 
-class UGroup
+class UGroup : UEntity
 {
 public:
 
 	UGroup();
-	UGroup(const FGroup& Data);
+	UGroup(const FGroup& Data, int id);
 	UGroup(UGroup* Other);
 protected:
 	FGroup Data;
 public:
 	FGroup& GetData();
-	static UGroup* CreateGroup(const UGroup& InData);
+	static UGroup* CreateGroup(const FGroup& InData);
 };

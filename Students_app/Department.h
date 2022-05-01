@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "Entity.h"
 struct FDepartment
 {
 private:
@@ -12,12 +13,12 @@ public:
 	std::string Title;
 };
 
-class UDepartment
+class UDepartment : UEntity
 {
 public:
 
 	UDepartment();
-	UDepartment(const FDepartment& Data);
+	UDepartment(const FDepartment& Data, int id);
 	UDepartment(UDepartment* Other);
 protected:
 	FDepartment Data;

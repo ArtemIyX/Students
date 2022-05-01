@@ -66,9 +66,6 @@
     <ClCompile Include="Application.cpp">
       <Filter>Исходные файлы\Private\Core</Filter>
     </ClCompile>
-    <ClCompile Include="MenuPosition.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="Application_Group.cpp">
       <Filter>Исходные файлы\Private\Core</Filter>
     </ClCompile>
@@ -77,6 +74,12 @@
     </ClCompile>
     <ClCompile Include="Application_Students.cpp">
       <Filter>Исходные файлы\Private\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuPosition.cpp">
+      <Filter>Исходные файлы\Private\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Исходные файлы\Private\Misc</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -108,7 +111,10 @@
       <Filter>Исходные файлы\Public\Core</Filter>
     </ClInclude>
     <ClInclude Include="MenuPosition.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Исходные файлы\Public\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Исходные файлы\Public\Misc</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

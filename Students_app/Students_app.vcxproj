@@ -145,6 +145,7 @@
     <ClCompile Include="Application_Group.cpp" />
     <ClCompile Include="Application_Students.cpp" />
     <ClCompile Include="Department.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Group.cpp" />
     <ClCompile Include="Manager.cpp" />
     <ClCompile Include="Menu.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Department.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="Group.h" />
     <ClInclude Include="InstanceManager.h" />
     <ClInclude Include="Manager.h" />

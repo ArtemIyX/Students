@@ -23,9 +23,10 @@ UStudent::UStudent()
 	Data = FStudent();
 }
 
-UStudent::UStudent(const FStudent& Data)
+UStudent::UStudent(const FStudent& Data, int id)
 {
 	this->Data = Data;
+	this->ID = id;
 }
 
 UStudent::UStudent(UStudent* Other)
@@ -41,7 +42,7 @@ FStudent& UStudent::GetData()
 
 UStudent* UStudent::CreateStudent(const FStudent& InData)
 {
-	UStudent* object = new UStudent(InData);
+	UStudent* object = new UStudent(InData, UEntity::GetNextID());
 	return object;
 }
 

@@ -6,6 +6,7 @@
 #include "InstanceManager.h"
 #include "Menu.h"
 #include "Group.h"
+#include "Entity.h"
 
 class UManager;
 class UMenuPosition;
