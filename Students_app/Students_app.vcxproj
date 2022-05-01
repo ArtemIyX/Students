@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Department.cpp" />
     <ClCompile Include="Group.cpp" />
     <ClCompile Include="Manager.cpp" />
     <ClCompile Include="Students_app.cpp" />
@@ -146,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="Department.h" />
     <ClInclude Include="Group.h" />
     <ClInclude Include="InstanceManager.h" />
     <ClInclude Include="Manager.h" />

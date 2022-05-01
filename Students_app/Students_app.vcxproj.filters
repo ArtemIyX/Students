@@ -57,11 +57,11 @@
     <ClCompile Include="Manager.cpp">
       <Filter>Исходные файлы\Private\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Department.cpp">
+      <Filter>Исходные файлы\Private\Data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Student.h">
-      <Filter>Исходные файлы\Public\Data</Filter>
-    </ClInclude>
     <ClInclude Include="Group.h">
       <Filter>Исходные файлы\Public\Data</Filter>
     </ClInclude>
@@ -73,6 +73,12 @@
     </ClInclude>
     <ClInclude Include="InstanceManager.h">
       <Filter>Исходные файлы\Public\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Department.h">
+      <Filter>Исходные файлы\Public\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Student.h">
+      <Filter>Исходные файлы\Public\Data</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -7,6 +7,7 @@ private:
 public:
 	FGroup();
 	FGroup(const FGroup& Other);
+	FGroup(std::string Title);
 public:
 	std::string Title;
 };

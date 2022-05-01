@@ -4,11 +4,16 @@ FGroup::FGroup()
 {
 	Title = Constants::Misc::NAME_None;
 }
-
-FGroup::FGroup(const FGroup& Other)
+FGroup::FGroup(std::string Title)
 {
-	this->Title = Other.Title;
+	this->Title = Title;
 }
+
+FGroup::FGroup(const FGroup& Other) : FGroup(Title)
+{
+	
+}
+
 
 UGroup::UGroup()
 {

@@ -1,19 +1,19 @@
 #pragma once
 #include <string>
-class UGroup;
-
-struct FStudent
+#include "Instance.h"
+struct FStudent 
 {
 private:
 
 public:
 	FStudent();
-	FStudent(const std::string& FullName, uint16_t Age, UGroup* Group);
+	FStudent(const std::string& FullName, uint16_t Age, class UGroup* Group, class UDepartment* Department);
 	FStudent(const FStudent& Other);
 public:
 	std::string FullName;
 	uint16_t Age;
-	UGroup* Group;
+	class UGroup* Group;
+	class UDepartment* Department;
 };
 
 class UStudent

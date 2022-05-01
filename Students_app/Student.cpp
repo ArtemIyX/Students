@@ -8,14 +8,15 @@ FStudent::FStudent()
 	Age = 17;
 }
 
-FStudent::FStudent(const std::string& FullName, uint16_t Age, UGroup* Group)
+FStudent::FStudent(const std::string& FullName, uint16_t Age, UGroup* Group, UDepartment* Department)
 {
 	this->FullName = FullName;
 	this->Age = Age;
 	this->Group = Group;
+	this->Department = Department;
 }
 
-FStudent::FStudent(const FStudent& Other) : FStudent(Other.FullName, Other.Age, Other.Group) {	}
+FStudent::FStudent(const FStudent& Other) : FStudent(Other.FullName, Other.Age, Other.Group, Other.Department) {	}
 
 UStudent::UStudent()
 {
