@@ -2,7 +2,7 @@
 #include <vector>
 class UMenu;
 class UManager;
-
+class UMenuPosition;
 class UApplication
 {
 public:
@@ -12,7 +12,9 @@ private:
 	UMenu* Menu;
 	UManager* Manager;
 protected:
-	std::vector<struct FMenuFunction> GetMenuFunctions();
+	std::vector<UMenuPosition*> MenuPositions;
+protected:
+	std::vector<UMenuPosition*> GenerateMenuPositions();
 	void StartCycle();
 	void TestFunc();
 public:

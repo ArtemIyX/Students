@@ -14,12 +14,9 @@ std::ostream& operator<<(std::ostream& os, const FMenuFunction& mf)
 
 UMenu::UMenu()
 {
+	CurrentMenuPosition = nullptr;
 }
 
-UMenu::UMenu(const std::vector<FMenuFunction>& Functions)
-{
-	Init(Functions);
-}
 
 
 void UMenu::Print(const std::string& msg)
@@ -30,36 +27,67 @@ void UMenu::Print(const std::string& msg)
 void UMenu::Warn(const std::string& msg)
 {
 	std::cout << "WARN: " << msg << '\n';
-	getchar();
+	Wait();
+}
+
+void UMenu::Wait()
+{
+	system("pause");
+}
+
+void UMenu::ClearScreen()
+{
+	system("cls");
 }
 
 uint16_t UMenu::Select(size_t MenuPositionIndex, bool& undo)
 {
-	Print(MenuMessages::MSG_Select);
 	std::string input;
 	undo = false;
 	while (true) {
-		try {
-			input.clear();
-			std::cin >> input;
-			int index = std::stoi(input);
-			if (index == -1) {
-				undo = true;
-				return -1;
-			}
-			if (!(index < 1 || index > MenuPositions[MenuPositionIndex]->GetFunctions().size())) {
-				return index;
-			}
+		Print(MenuMessages::MSG_Select);
+		input.clear();
+		std::cin >> input;
+		int index = std::stoi(input);
+		if (index == -1) {
+			undo = true;
+			return -1;
 		}
-		catch (std::exception ex) {
-			Warn(MenuMessages::MSG_IndexError);
+		if (!(index < 1 || index > MenuPositions[MenuPositionIndex]->GetFunctions().size())) {
+			return index;
+		}
+		else {
+			throw std::exception("Index error");
 		}
 	}
 }
 
-void UMenu::Init(const std::vector<FMenuFunction>& Functions)
+int UMenu::GetCurrentMenuPositionIndex() const
 {
-	//this->Functions = Functions;
+	if (CurrentMenuPosition) {
+		for (size_t i = 0; i < MenuPositions.size(); ++i) {
+			if (MenuPositions[i] == CurrentMenuPosition) {
+				return i;
+			}
+		}
+	}
+	return -1;
+}
+
+void UMenu::SetCurrentMenuPosition(UMenuPosition* MenuPosition)
+{
+	CurrentMenuPosition = MenuPosition;
+}
+
+UMenuPosition* UMenu::GetCurrentMenuPosition() const
+{
+	return CurrentMenuPosition;
+}
+
+void UMenu::Init(std::vector<UMenuPosition*> MenuPositions)
+{
+	this->MenuPositions = MenuPositions;
+	CurrentMenuPosition = MenuPositions[0];
 }
 
 void UMenu::Draw(size_t MenuPositionIndex)
