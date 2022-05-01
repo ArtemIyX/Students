@@ -24,7 +24,7 @@ UGroup::UGroup(UGroup* Other) : UGroup(Other->GetData())
 {
 }
 
-const FGroup& UGroup::GetData() const
+FGroup& UGroup::GetData()
 {
 	return Data;
 }

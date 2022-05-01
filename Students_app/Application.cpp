@@ -25,7 +25,8 @@ std::vector<UMenuPosition*> UApplication::GenerateMenuPositions()
 	UMenuPosition* Groups = UMenuPosition::CreateMenuPosition(
 		{ FMenuFunction("Show list of groups", [this]() { Group_Show();  Menu->Wait(); }),
 		FMenuFunction("Add new group", std::bind(&UApplication::Group_Add, this)),
-		FMenuFunction("Remove group", std::bind(&UApplication::Group_Remove, this)) },
+		FMenuFunction("Remove group", std::bind(&UApplication::Group_Remove, this)),
+		FMenuFunction("Edit group", std::bind(&UApplication::Group_Edit, this)) },
 		"Groups", MainMenu);
 	return {
 		MainMenu, Groups
@@ -97,12 +98,7 @@ void UApplication::StartCycle()
 	} while (true);
 }
 
-void UApplication::TestFunc()
-{
-	Menu->ClearScreen();
-	Menu->Print("Hello dude");
-	Menu->Wait();
-}
+
 
 void UApplication::GroupSection()
 {
@@ -111,7 +107,7 @@ void UApplication::GroupSection()
 
 void UApplication::Group_Add()
 {
-	Menu->Print(ApplicationMessages::MSG_Enter_GroupName);
+	Menu->Print(ApplicationMessages::Group::MSG_Enter);
 	std::string input;
 	std::cin >> input; // change on getline
 
@@ -126,26 +122,24 @@ void UApplication::Group_Add()
 void UApplication::Group_Show()
 {
 	const std::vector<UGroup*> groups = Manager->GetGroupManager()->GetAllInstances();
-	const size_t size = groups.size();
-	if (size == 0) {
-		Menu->Print(ApplicationMessages::MSG_No_Groups);
+	if (!Group_Check()) {
+		Menu->Print(ApplicationMessages::Group::MSG_No);
+		Menu->Wait();
 		return;
 	}
-	Menu->Print(ApplicationMessages::MSG_Groups);
+	Menu->Print(ApplicationMessages::Group::MSG_Name);
 	for (size_t i = 0; i < groups.size(); ++i)
 	{
 		UGroup* group = groups[i];
 		const FGroup& data = group->GetData();
-		Menu->Print(String::format("[%d]\t%s\n", i+1, data.Title.c_str()));
+		Menu->Print(String::format("[%d]\t%s\n", i + 1, data.Title.c_str()));
 	}
 }
 
 void UApplication::Group_Remove()
 {
-	const std::vector<UGroup*> groups = Manager->GetGroupManager()->GetAllInstances();
-	const size_t size = groups.size();
-	if (size == 0) {
-		Menu->Print(ApplicationMessages::MSG_No_Groups);
+	if (!Group_Check()) {
+		Menu->Print(ApplicationMessages::Group::MSG_No);
 		Menu->Wait();
 		return;
 	}
@@ -157,8 +151,38 @@ void UApplication::Group_Remove()
 		return;
 	}
 	groupManager->RemoveInstanceAt(index - 1);
-	Menu->Print(ApplicationMessages::MSG_Rem_Group);
+	Menu->Print(ApplicationMessages::Group::MSG_Rem);
 	Menu->Wait();
+}
+
+void UApplication::Group_Edit()
+{
+	const std::vector<UGroup*> groups = Manager->GetGroupManager()->GetAllInstances();
+	const size_t size = groups.size();
+	if (size == 0) {
+		Menu->Print(ApplicationMessages::Group::MSG_No);
+		Menu->Wait();
+		return;
+	}
+	uint16_t index = 0;
+	bool undo = false;
+	UInstanceManager<UGroup>* groupManager = Manager->GetGroupManager();
+	UGroup* group = SelectInstance<UGroup>(groupManager, std::bind(&UApplication::Group_Show, this), index, undo);
+	if (undo) {
+		return;
+	}
+	Menu->Print(ApplicationMessages::Group::MSG_Enter);
+	std::string input;
+	std::cin >> input;
+	FGroup& data = group->GetData();
+	data.Title = input;
+	Menu->Print(ApplicationMessages::Group::MSG_Edit);
+	Menu->Wait();
+}
+
+bool UApplication::Group_Check()
+{
+	return Manager->GetGroupManager()->GetAllInstances().size() != 0;
 }
 
 

@@ -22,6 +22,6 @@ public:
 protected:
 	FGroup Data;
 public:
-	const FGroup& GetData() const;
+	FGroup& GetData();
 	static UGroup* CreateGroup(const UGroup& InData);
 };

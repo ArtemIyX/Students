@@ -12,10 +12,14 @@ class UMenuPosition;
 
 namespace ApplicationMessages
 {
-	const std::string MSG_Groups = "Groups: \n";
-	const std::string MSG_Rem_Group = "Group successfully removed\n";
-	const std::string MSG_Enter_GroupName = "Enter group name: ";
-	const std::string MSG_No_Groups = "There are no groups\n";
+	namespace Group
+	{
+		const std::string MSG_Name = "Groups: \n";
+		const std::string MSG_Rem = "Group successfully removed\n";
+		const std::string MSG_Edit = "Group successfully edited\n";
+		const std::string MSG_Enter = "Enter group name: ";
+		const std::string MSG_No = "There are no groups\n";
+	}
 	
 }
 
@@ -30,12 +34,13 @@ private:
 protected:
 	std::vector<UMenuPosition*> GenerateMenuPositions();
 	void StartCycle();
-	void TestFunc();
+	void Select(uint16_t& index, bool& undo);
 	void GroupSection();
 	void Group_Add();
 	void Group_Show();
 	void Group_Remove();
-	void Select(uint16_t& index, bool& undo);
+	void Group_Edit();
+	bool Group_Check();
 
 
 	template<typename T>
