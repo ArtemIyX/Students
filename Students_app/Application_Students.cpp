@@ -34,16 +34,16 @@ void UApplication::Student_Add()
 	bool undo = false;
 	Menu->Print(ApplicationMessages::Student::MSG_Enter_Group);
 	UGroup* group = SelectInstance<UGroup>(groupManager, std::bind(&UApplication::Group_Show, this), index, undo);
-	if (undo) 
+	if (undo)
 		return;
 
 	Menu->Print(ApplicationMessages::Student::MSG_Enter_Department);
 	UDepartment* dep = SelectInstance<UDepartment>(departmentManager, std::bind(&UApplication::Department_Show, this), index, undo);
-	if (undo) 
+	if (undo)
 		return;
 
 	UStudent* student = UStudent::CreateStudent(FStudent(name, age, group, dep));
-	if (!Manager->GetStudentsManager()->AddInstance(student)) 
+	if (!Manager->GetStudentsManager()->AddInstance(student))
 	{
 		delete student;
 		return;
@@ -55,20 +55,20 @@ void UApplication::Student_Add()
 
 void UApplication::Student_Show()
 {
-	
-	if (!Student_Check()) 
+
+	if (!Student_Check())
 	{
 		Menu->Print(ApplicationMessages::Student::MSG_No);
 		return;
 	}
 	const std::vector<UStudent*> students = Manager->GetStudentsManager()->GetAllInstances();
-	for (size_t i = 0; i < students.size(); ++i) 
+	for (size_t i = 0; i < students.size(); ++i)
 	{
 		FStudent& data = students[i]->GetData();
-		Menu->Print(String::format("[%d]\t%s %d years (%s - %s)\n", i + 1, 
-			data.FullName.c_str(), 
-			data.Age, 
-			data.Group->GetData().Title.c_str(), 
+		Menu->Print(String::format("[%d]\t%s %d years (%s - %s)\n", i + 1,
+			data.FullName.c_str(),
+			data.Age,
+			data.Group->GetData().Title.c_str(),
 			data.Department->GetData().Title.c_str()));
 	}
 
@@ -85,9 +85,11 @@ void UApplication::Student_Remove()
 	uint16_t index = 0;
 	bool undo = false;
 	UStudent* student = SelectInstance<UStudent>(studentsManager, std::bind(&UApplication::Student_Show, this), index, undo);
-	if (undo) {
+	if (undo)
+	{
 		return;
 	}
+	
 	studentsManager->RemoveInstanceAt(index - 1);
 	Menu->Print(ApplicationMessages::Student::MSG_Rem);
 	Menu->Wait();
@@ -104,12 +106,13 @@ void UApplication::Student_Edit()
 	uint16_t index = 0;
 	bool undo = false;
 	UStudent* student = SelectInstance<UStudent>(studentsManager, std::bind(&UApplication::Student_Show, this), index, undo);
-	if (undo) {
+	if (undo)
+	{
 		return;
 	}
 	FStudent& data = student->GetData();
 	bool editName = GetBool(ApplicationMessages::Student::Question::MSG_Edit_Name);
-	if (editName) 
+	if (editName)
 	{
 		std::string input = GetString(ApplicationMessages::Student::MSG_Enter_Name);
 		data.FullName = input;
@@ -120,7 +123,7 @@ void UApplication::Student_Edit()
 		int age = GetInt(ApplicationMessages::Student::MSG_Enter_Age, 1, 100);
 		data.Age = age;
 	}
-	if (Manager->GetGroupManager()->GetAllInstances().size() > 1) 
+	if (Manager->GetGroupManager()->GetAllInstances().size() > 1)
 	{
 		bool editGroup = GetBool(ApplicationMessages::Student::Question::MSG_Edit_Group);
 		if (editGroup)
@@ -133,7 +136,7 @@ void UApplication::Student_Edit()
 			}
 		}
 	}
-	if (Manager->GetDepartmentManager()->GetAllInstances().size() > 1) 
+	if (Manager->GetDepartmentManager()->GetAllInstances().size() > 1)
 	{
 		bool editDepartment = GetBool(ApplicationMessages::Student::Question::MSG_Edit_Dep);
 		if (editDepartment)
@@ -153,3 +156,4 @@ bool UApplication::Student_Check()
 {
 	return Manager->GetStudentsManager()->GetAllInstances().size() != 0;
 }
+

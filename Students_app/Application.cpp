@@ -4,6 +4,9 @@
 #include "MenuPosition.h"
 #include "Tools.h"
 #include "Constants.h"
+#include "Department.h"
+#include "Group.h"
+#include "Student.h"
 
 UApplication::UApplication()
 {
@@ -71,14 +74,17 @@ void UApplication::Select(uint16_t& index, bool& undo)
 	int menuIndex = Menu->GetCurrentMenuPositionIndex();
 	index = 0;
 	undo = false;
-	while (true) {
+	while (true) 
+	{
 		Menu->ClearScreen();
 		Menu->Draw(menuIndex);
-		try {
+		try 
+		{
 			index = Menu->Select(menuIndex, undo);
 			break;
 		}
-		catch (std::exception ex) {
+		catch (std::exception ex) 
+		{
 			Menu->Warn("Try again");
 		}
 	}
@@ -149,7 +155,8 @@ void UApplication::StartCycle()
 	{
 		Menu->ClearScreen();
 		int menuIndex = Menu->GetCurrentMenuPositionIndex();
-		if (menuIndex == -1) {
+		if (menuIndex == -1) 
+		{
 			return; //never call this
 		}
 
@@ -157,11 +164,13 @@ void UApplication::StartCycle()
 		bool undo = false;
 		Select(index, undo);
 
-		if (undo) {
+		if (undo)
+		{
 			if (UMenuPosition* menuPos = Menu->GetCurrentMenuPosition()->GetOwner()) {
 				Menu->SetCurrentMenuPosition(menuPos);
 			}
-			else {
+			else 
+			{
 				return; //exit
 			}
 		}
@@ -169,6 +178,32 @@ void UApplication::StartCycle()
 			Menu->GetCurrentMenuPosition()->GetFunctions()[index - 1].Func();
 		}
 	} while (true);
+}
+
+bool UApplication::IsGroupConnected(UGroup* group)
+{
+	std::vector<UStudent*> students = Manager->GetStudentsManager()->GetAllInstances();
+	for (size_t i = 0; i < students.size(); ++i) 
+	{
+		if (students[i]->GetData().Group == group)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool UApplication::IsDepartmentConnected(UDepartment* deparment)
+{
+	std::vector<UStudent*> students = Manager->GetStudentsManager()->GetAllInstances();
+	for (size_t i = 0; i < students.size(); ++i) 
+	{
+		if (students[i]->GetData().Department == deparment)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 

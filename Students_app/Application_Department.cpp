@@ -45,11 +45,17 @@ void UApplication::Department_Remove()
 		Menu->Wait();
 		return;
 	}
+	
 	UInstanceManager<UDepartment>* departmentManager = Manager->GetDepartmentManager();
 	uint16_t index = 0;
 	bool undo = false;
 	UDepartment* dep = SelectInstance<UDepartment>(departmentManager, std::bind(&UApplication::Department_Show, this), index, undo);
 	if (undo) {
+		return;
+	}
+	if (IsDepartmentConnected(dep)) 
+	{
+		Menu->Warn(ApplicationMessages::Departments::MSG_Con);
 		return;
 	}
 	departmentManager->RemoveInstanceAt(index - 1);

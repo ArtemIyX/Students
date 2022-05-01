@@ -23,7 +23,8 @@ void UApplication::Group_Add()
 void UApplication::Group_Show()
 {
 	const std::vector<UGroup*> groups = Manager->GetGroupManager()->GetAllInstances();
-	if (!Group_Check()) {
+	if (!Group_Check())
+	{
 		Menu->Print(ApplicationMessages::Group::MSG_No);
 		Menu->Wait();
 		return;
@@ -39,7 +40,8 @@ void UApplication::Group_Show()
 
 void UApplication::Group_Remove()
 {
-	if (!Group_Check()) {
+	if (!Group_Check())
+	{
 		Menu->Print(ApplicationMessages::Group::MSG_No);
 		Menu->Wait();
 		return;
@@ -48,7 +50,13 @@ void UApplication::Group_Remove()
 	uint16_t index = 0;
 	bool undo = false;
 	UGroup* group = SelectInstance<UGroup>(groupManager, std::bind(&UApplication::Group_Show, this), index, undo);
-	if (undo) {
+	if (undo)
+	{
+		return;
+	}
+	if (IsGroupConnected(group))
+	{
+		Menu->Warn(ApplicationMessages::Group::MSG_Con);
 		return;
 	}
 	groupManager->RemoveInstanceAt(index - 1);
@@ -58,7 +66,8 @@ void UApplication::Group_Remove()
 
 void UApplication::Group_Edit()
 {
-	if (!Group_Check()) {
+	if (!Group_Check())
+	{
 		Menu->Print(ApplicationMessages::Group::MSG_No);
 		Menu->Wait();
 		return;
@@ -67,7 +76,8 @@ void UApplication::Group_Edit()
 	bool undo = false;
 	UInstanceManager<UGroup>* groupManager = Manager->GetGroupManager();
 	UGroup* group = SelectInstance<UGroup>(groupManager, std::bind(&UApplication::Group_Show, this), index, undo);
-	if (undo) {
+	if (undo) 
+	{
 		return;
 	}
 	std::string input = GetString(ApplicationMessages::Group::MSG_Enter);

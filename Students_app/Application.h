@@ -19,6 +19,7 @@ namespace ApplicationMessages
 		const std::string MSG_Edit = "Group successfully edited\n";
 		const std::string MSG_Enter = "Enter group name: ";
 		const std::string MSG_No = "There are no groups\n";
+		const std::string MSG_Con = "Group is connected with student\n";
 	}
 
 	namespace Departments
@@ -28,6 +29,7 @@ namespace ApplicationMessages
 		const std::string MSG_Edit = "Department successfully edited\n";
 		const std::string MSG_Enter = "Enter Department name: ";
 		const std::string MSG_No = "There are no Departments\n";
+		const std::string MSG_Con = "Department is connected with student\n";
 	}
 	namespace Student
 	{
@@ -39,6 +41,7 @@ namespace ApplicationMessages
 		const std::string MSG_Enter_Group = "Select group for student:\n";
 		const std::string MSG_Enter_Department = "Enter department for student:\n";
 		const std::string MSG_No = "There are no Students\n";
+
 
 		namespace Question
 		{
@@ -92,6 +95,8 @@ protected:
 	void Student_Edit();
 	bool Student_Check();
 
+	bool IsGroupConnected(class UGroup* group);
+	bool IsDepartmentConnected(class UDepartment* deparment);
 
 	template<typename T>
 	T* SelectInstance(UInstanceManager<T>* instanceManager, std::function<void()> DrawFunc, uint16_t& Position, bool& undo)
