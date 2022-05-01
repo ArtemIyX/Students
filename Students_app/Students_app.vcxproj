@@ -139,13 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="InstanceManager.cpp" />
+    <ClCompile Include="Group.cpp" />
     <ClCompile Include="Manager.cpp" />
     <ClCompile Include="Students_app.cpp" />
     <ClCompile Include="Student.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="Group.h" />
     <ClInclude Include="InstanceManager.h" />
     <ClInclude Include="Manager.h" />
     <ClInclude Include="Student.h" />

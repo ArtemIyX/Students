@@ -30,8 +30,8 @@
     <ClCompile Include="Manager.cpp">
       <Filter>Исходные файлы\Core</Filter>
     </ClCompile>
-    <ClCompile Include="InstanceManager.cpp">
-      <Filter>Исходные файлы\Core</Filter>
+    <ClCompile Include="Group.cpp">
+      <Filter>Исходные файлы\Data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -46,6 +46,9 @@
     </ClInclude>
     <ClInclude Include="InstanceManager.h">
       <Filter>Исходные файлы\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Group.h">
+      <Filter>Исходные файлы\Data</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-
+class UGroup;
 
 struct FStudent
 {
@@ -8,12 +8,12 @@ private:
 
 public:
 	FStudent();
-	FStudent(const std::string& FullName, uint16_t Age);
+	FStudent(const std::string& FullName, uint16_t Age, UGroup* Group);
 	FStudent(const FStudent& Other);
 public:
 	std::string FullName;
 	uint16_t Age;
-	
+	UGroup* Group;
 };
 
 class UStudent

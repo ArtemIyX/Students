@@ -1,18 +1,21 @@
 #include "Student.h"
 #include "Constants.h"
+#include "Group.h"
+
 FStudent::FStudent()
 {
 	FullName = Constants::Misc::NAME_None;
 	Age = 17;
 }
 
-FStudent::FStudent(const std::string& FullName, uint16_t Age)
+FStudent::FStudent(const std::string& FullName, uint16_t Age, UGroup* Group)
 {
 	this->FullName = FullName;
 	this->Age = Age;
+	this->Group = Group;
 }
 
-FStudent::FStudent(const FStudent& Other) : FStudent(Other.FullName, Other.Age) {	}
+FStudent::FStudent(const FStudent& Other) : FStudent(Other.FullName, Other.Age, Other.Group) {	}
 
 UStudent::UStudent()
 {
