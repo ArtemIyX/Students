@@ -145,6 +145,7 @@
     <ClCompile Include="Group.cpp" />
     <ClCompile Include="Manager.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="MenuPosition.cpp" />
     <ClCompile Include="Students_app.cpp" />
     <ClCompile Include="Student.cpp" />
   </ItemGroup>
@@ -156,6 +157,7 @@
     <ClInclude Include="InstanceManager.h" />
     <ClInclude Include="Manager.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="MenuPosition.h" />
     <ClInclude Include="Student.h" />
     <ClInclude Include="Tools.h" />
   </ItemGroup>

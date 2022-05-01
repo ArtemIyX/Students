@@ -42,12 +42,13 @@ void UApplication::Run()
     StartCycle();
 }
 
+
 void UApplication::StartCycle()
 {
     do 
     {
         system("cls");
-        Menu->Draw();
+        Menu->Draw(0);
         getchar();
     } while (true);
 }

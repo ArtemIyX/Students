@@ -66,6 +66,9 @@
     <ClCompile Include="Application.cpp">
       <Filter>Исходные файлы\Private\Core</Filter>
     </ClCompile>
+    <ClCompile Include="MenuPosition.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Group.h">
@@ -94,6 +97,9 @@
     </ClInclude>
     <ClInclude Include="Application.h">
       <Filter>Исходные файлы\Public\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuPosition.h">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

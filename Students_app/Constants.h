@@ -8,5 +8,6 @@ namespace Constants
 	{
 		const std::string NAME_None = "None";
 	}
+
 	
 }
