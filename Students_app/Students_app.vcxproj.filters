@@ -27,10 +27,10 @@
     <ClCompile Include="Student.cpp">
       <Filter>Исходные файлы\Data</Filter>
     </ClCompile>
-    <ClCompile Include="StudentsManager.cpp">
+    <ClCompile Include="Manager.cpp">
       <Filter>Исходные файлы\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Manager.cpp">
+    <ClCompile Include="InstanceManager.cpp">
       <Filter>Исходные файлы\Core</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,10 +41,10 @@
     <ClInclude Include="Constants.h">
       <Filter>Исходные файлы\Data</Filter>
     </ClInclude>
-    <ClInclude Include="StudentsManager.h">
+    <ClInclude Include="Manager.h">
       <Filter>Исходные файлы\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Manager.h">
+    <ClInclude Include="InstanceManager.h">
       <Filter>Исходные файлы\Core</Filter>
     </ClInclude>
   </ItemGroup>
