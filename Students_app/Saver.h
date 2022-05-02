@@ -7,7 +7,6 @@
 #include "Menu.h"
 #include "InstanceManager.h"
 #include <vector>
-
 class Sid
 {
 public:
@@ -22,15 +21,17 @@ public:
 	int dep;
 	int group;
 };
+
 class SGroup : public Sid
 {
 public:
 	FGroup group;
 };
+
 class SDep : public Sid
 {
 public:
-	FDepartment f;
+	FDepartment department;
 };
 
 class FSaver
@@ -42,12 +43,16 @@ public:
 	std::vector<SStudent> Students;
 };
 
+
+
 class USaver
 {
 public:
 	USaver(UManager* manager);
 protected:
 	UManager* managerRef;
+	void ReadFile(const std::string& filepath, std::string& buffer);
+	void WriteFile(const std::string& filepath, std::string& content);
 public:
 	void Save(int id);
 	int Load();

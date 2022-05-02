@@ -1,0 +1,29 @@
+{
+  "departments": [
+    {
+      "department": {
+        "title": "Debug_dep_1"
+      },
+      "id": 2
+    }
+  ],
+  "groups": [
+    {
+      "group": {
+        "title": "Debug_group_1"
+      },
+      "id": 1
+    }
+  ],
+  "students": [
+    {
+      "dep": 2,
+      "f": {
+        "Age": 18,
+        "FullName": "Debug_student1"
+      },
+      "group": 1,
+      "id": 3
+    }
+  ]
+}

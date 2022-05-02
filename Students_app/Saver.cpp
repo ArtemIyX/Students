@@ -2,24 +2,74 @@
 #include "Constants.h"
 #include <fstream>
 #include <iostream>
-
+#include <nlohmann/json.hpp>
+void to_json(nlohmann::json& j, const SStudent& s)
+{
+	j = {
+		{"f",
+			{
+				{"FullName", s.f.FullName},
+				{"Age", s.f.Age}
+			}},
+		{"dep", s.dep},
+		{"group", s.group},
+		{"id", s.id}
+	};
+}
+void to_json(nlohmann::json& j, const SGroup& s)
+{
+	j = {
+		{"group",
+			{
+				{"title", s.group.Title}
+			}
+		},
+		{"id", s.id}
+	};
+}
+void to_json(nlohmann::json& j, const SDep& s)
+{
+	j = {
+		{"department",
+			{
+				{"title", s.department.Title}
+			}
+		},
+		{"id", s.id}
+	};
+}
 USaver::USaver(UManager* manager)
 {
 	managerRef = manager;
 }
 
+void USaver::ReadFile(const std::string& filepath, std::string& buffer)
+{
+	std::ifstream fin(filepath.c_str());
+	getline(fin, buffer, char(-1));
+	fin.close();
+}
+
+void USaver::WriteFile(const std::string& filepath, std::string& content)
+{
+	std::ofstream out(filepath);
+	out << content;
+	out.close();
+}
+
 void USaver::Save(int id)
 {
 	FSaver saver;
-	saver.Counter = id;
+	nlohmann::json j;
 
 	std::vector<UDepartment*> departments = managerRef->GetDepartmentManager()->GetAllInstances();
 	for (UDepartment* dep : departments) 
 	{
 		SDep d;
-		d.f = dep->GetData();
+		d.department = dep->GetData();
 		d.id = dep->ID;
 		saver.Departments.push_back(d);
+		j["departments"].push_back(d);
 	}
 	
 	std::vector<UGroup*> groups = managerRef->GetGroupManager()->GetAllInstances();
@@ -28,7 +78,7 @@ void USaver::Save(int id)
 		SGroup g;
 		g.group = group->GetData();
 		g.id = group->ID;
-		saver.Groups.push_back(g);
+		j["groups"].push_back(g);
 	}
 
 	std::vector<UStudent*> students = managerRef->GetStudentsManager()->GetAllInstances();
@@ -45,22 +95,22 @@ void USaver::Save(int id)
 		data.Group = nullptr;
 		data.Department = nullptr;
 
-		SStudent save;
-		save.f = data;
-		save.dep = depID;
-		save.group = groupID;
-		save.id = student->ID;
+		SStudent s;
+		s.f = data;
+		s.dep = depID;
+		s.group = groupID;
+		s.id = student->ID;
 
-		saver.Students.push_back(save);
+		j["students"].push_back(s);
 
 		data.Group = group;
 		data.Department = dep;
 	}
 
-	std::ofstream fout;
-	fout.open(Constants::Misc::SavePath, std::ios::binary);
-	fout.write((char*)&saver, sizeof(saver));
-	fout.close();
+	//std::cout << j;
+	std::string content = j.dump();
+	WriteFile(Constants::Misc::SavePath, content);
+	system("pause");
 }
 
 int USaver::Load()
