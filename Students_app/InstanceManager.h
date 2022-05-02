@@ -84,4 +84,13 @@ public:
 	{
 		return Instances[index];
 	}
+	void Clear()
+	{
+		for (size_t i = 0; i < Instances.size(); ++i)
+		{
+			delete Instances[i];
+			Instances[i] = nullptr;
+		}
+		Instances.clear();
+	}
 };

@@ -1,17 +1,14 @@
 {
+  "counter": 4,
   "departments": [
     {
-      "department": {
-        "title": "Debug_dep_1"
-      },
+      "departmentTitle": "Debug_dep_1",
       "id": 2
     }
   ],
   "groups": [
     {
-      "group": {
-        "title": "Debug_group_1"
-      },
+      "groupTitle": "Debug_group_1",
       "id": 1
     }
   ],

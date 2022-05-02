@@ -6,13 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="266cec17-2112-4df3-a440-dd2766f94082" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Students/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Students/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Students_app/Application.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Students_app/Application.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Students_app/Application.h" beforeDir="false" afterPath="$PROJECT_DIR$/Students_app/Application.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Students_app/Constants.h" beforeDir="false" afterPath="$PROJECT_DIR$/Students_app/Constants.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Students_app/Menu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Students_app/Menu.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Students_app/Menu.h" beforeDir="false" afterPath="$PROJECT_DIR$/Students_app/Menu.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Students_app/Students_app.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Students_app/Students_app.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Students_app/Students_app.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/Students_app/Students_app.vcxproj.filters" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Students_app/1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Students_app/Saver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Students_app/Saver.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Students_app/Saver.h" beforeDir="false" afterPath="$PROJECT_DIR$/Students_app/Saver.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Students_app/save.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Students_app/save.json" beforeDir="false" afterPath="$PROJECT_DIR$/Students_app/save.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,6 +95,7 @@
       <workItem from="1651405664438" duration="201000" />
       <workItem from="1651407973179" duration="146000" />
       <workItem from="1651408286047" duration="93000" />
+      <workItem from="1651482475622" duration="402000" />
     </task>
     <servers />
   </component>

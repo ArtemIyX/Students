@@ -7,6 +7,15 @@
 #include "Menu.h"
 #include "InstanceManager.h"
 #include <vector>
+
+namespace FieldNames
+{
+	const std::string F_Departments = "departments";
+	const std::string F_Students = "students";
+	const std::string F_Groups = "groups";
+	const std::string F_Counter = "counter";
+}
+
 class Sid
 {
 public:
@@ -53,6 +62,8 @@ protected:
 	UManager* managerRef;
 	void ReadFile(const std::string& filepath, std::string& buffer);
 	void WriteFile(const std::string& filepath, std::string& content);
+	UGroup* FindGroupById(int id);
+	UDepartment* FindDepartmentById(int id);
 public:
 	void Save(int id);
 	int Load();
