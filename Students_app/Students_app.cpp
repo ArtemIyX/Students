@@ -3,14 +3,11 @@
 #include <iostream>
 #include "Application.h"
 #include "Entity.h"
-//class MyClass
-//{
-//public:
-//	std::vector<int> gg;
-//
-//};
+#include "Saver.h"
 int main()
 {
+	/*USaver s(nullptr);
+	s.Load();*/
 	UApplication* app = new UApplication();
 	app->Run();
 

@@ -89,6 +89,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\Users\admin\source\repos\Students\Students_app\Dependencies\json\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -150,6 +151,7 @@
     <ClCompile Include="Manager.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="MenuPosition.cpp" />
+    <ClCompile Include="Saver.cpp" />
     <ClCompile Include="Students_app.cpp" />
     <ClCompile Include="Student.cpp" />
   </ItemGroup>
@@ -163,6 +165,7 @@
     <ClInclude Include="Manager.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="MenuPosition.h" />
+    <ClInclude Include="Saver.h" />
     <ClInclude Include="Student.h" />
     <ClInclude Include="Tools.h" />
   </ItemGroup>

@@ -30,14 +30,9 @@ FGroup& UGroup::GetData()
 	return Data;
 }
 
-UGroup* UGroup::CreateGroup(const FGroup& InData)
+UGroup* UGroup::CreateGroup(const FGroup& InData, int id)
 {
-	UGroup* object = new UGroup(InData, UEntity::GetNextID());
+	UGroup* object = new UGroup(InData, id);
 	return object;
 }
 
-//std::ostream& operator<<(std::ostream& os, const FGroup& group)
-//{
-//	os << group.Title;
-//	return os;
-//}

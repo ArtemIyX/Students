@@ -40,9 +40,9 @@ FStudent& UStudent::GetData()
 	return Data;
 }
 
-UStudent* UStudent::CreateStudent(const FStudent& InData)
+UStudent* UStudent::CreateStudent(const FStudent& InData, int id)
 {
-	UStudent* object = new UStudent(InData, UEntity::GetNextID());
+	UStudent* object = new UStudent(InData, id);
 	return object;
 }
 

@@ -7,9 +7,11 @@
 #include "Department.h"
 #include "Group.h"
 #include "Student.h"
-
+#include "Saver.h"
+#include "Menu.h"
 UApplication::UApplication()
 {
+	Counter_ID = 1;
 	Menu = new UMenu();
 	Manager = new UManager();
 }
@@ -20,12 +22,22 @@ UApplication::~UApplication()
 	delete Manager;
 }
 
+int UApplication::GetID()
+{
+	int res = Counter_ID;
+	++Counter_ID;
+	return res;
+}
+
 std::vector<UMenuPosition*> UApplication::GenerateMenuPositions()
 {
 	UMenuPosition* MainMenu = UMenuPosition::CreateMenuPosition(
 		{ FMenuFunction("Groups", std::bind(&UApplication::Group_Section, this)),
 		FMenuFunction("Departments", std::bind(&UApplication::Department_Section, this)),
-		FMenuFunction("Students", std::bind(&UApplication::Student_Section, this)) },
+		FMenuFunction("Students", std::bind(&UApplication::Student_Section, this)),
+		FMenuFunction("Save", std::bind(&UApplication::Save, this)),
+		FMenuFunction("Load", std::bind(&UApplication::Load, this)),
+		FMenuFunction("Fast debug", std::bind(&UApplication::FastDebug, this)) },
 		"Main menu", nullptr);
 	UMenuPosition* Groups = UMenuPosition::CreateMenuPosition(
 		{ FMenuFunction("Show list of groups", [this]() { Group_Show();  Menu->Wait(); }),
@@ -67,6 +79,19 @@ void UApplication::Run()
 	std::vector<UMenuPosition*> MenuFunctions = GenerateMenuPositions();
 	Menu->Init(MenuFunctions);
 	StartCycle();
+}
+
+void UApplication::Save()
+{
+	USaver saver(Manager);
+	saver.Save(Counter_ID);
+}
+
+void UApplication::Load()
+{
+	USaver saver(Manager);
+	Counter_ID = saver.Load();
+	Menu->Wait();
 }
 
 void UApplication::Select(uint16_t& index, bool& undo)
@@ -204,6 +229,16 @@ bool UApplication::IsDepartmentConnected(UDepartment* deparment)
 		}
 	}
 	return false;
+}
+
+void UApplication::FastDebug()
+{
+	GetManager()->GetGroupManager()->AddInstance(UGroup::CreateGroup(FGroup("Debug_group_1"), GetID()));
+	GetManager()->GetDepartmentManager()->AddInstance(UDepartment::CreateDepartment(FDepartment("Debug_dep_1"), GetID()));
+	FStudent f("Debug_student1", 18,
+		GetManager()->GetGroupManager()->GetInstance(0),
+		GetManager()->GetDepartmentManager()->GetInstance(0));
+	GetManager()->GetStudentsManager()->AddInstance(UStudent::CreateStudent(f, GetID()));
 }
 
 

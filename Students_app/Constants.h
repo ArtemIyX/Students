@@ -11,6 +11,7 @@ namespace Constants
 		const char yes2 = 'y';
 		const char no1 = 'N';
 		const char no2 = 'n';
+		const std::string SavePath = "save.bin";
 	}
 
 	

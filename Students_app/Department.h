@@ -13,7 +13,7 @@ public:
 	std::string Title;
 };
 
-class UDepartment : UEntity
+class UDepartment : public UEntity
 {
 public:
 
@@ -24,6 +24,6 @@ protected:
 	FDepartment Data;
 public:
 	FDepartment& GetData();
-	static UDepartment* CreateDepartment(const FDepartment& InData);
+	static UDepartment* CreateDepartment(const FDepartment& InData, int id);
 };
 

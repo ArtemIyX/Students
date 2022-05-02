@@ -2,7 +2,7 @@
 #include "Manager.h"
 #include "MenuPosition.h"
 #include "Tools.h"
-
+#include "Group.h"
 void UApplication::Group_Section()
 {
 	Menu->ChangeMenuPosition(1); //TODO: Change magic numbers
@@ -13,7 +13,7 @@ void UApplication::Group_Add()
 	std::string input = GetString(ApplicationMessages::Group::MSG_Enter);
 
 	FGroup info(input);
-	UGroup* group = UGroup::CreateGroup(info);
+	UGroup* group = UGroup::CreateGroup(info, GetID());
 	Manager->GetGroupManager()->AddInstance(group);
 
 	Menu->Print(String::format("Group %s created\n", group->GetData().Title.c_str()));

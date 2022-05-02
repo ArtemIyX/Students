@@ -35,8 +35,8 @@ FDepartment& UDepartment::GetData()
 	return Data;
 }
 
-UDepartment* UDepartment::CreateDepartment(const FDepartment& InData)
+UDepartment* UDepartment::CreateDepartment(const FDepartment& InData, int id)
 {
-	UDepartment* object = new UDepartment(InData, UEntity::GetNextID());
+	UDepartment* object = new UDepartment(InData, id);
 	return object;
 }

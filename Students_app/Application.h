@@ -5,9 +5,6 @@
 #include <iostream>
 #include "InstanceManager.h"
 #include "Menu.h"
-#include "Group.h"
-#include "Entity.h"
-
 class UManager;
 class UMenuPosition;
 
@@ -63,15 +60,18 @@ public:
 private:
 	UMenu* Menu;
 	UManager* Manager;
+	int Counter_ID;
 private:
 	int GetInt(const std::string& Prompt, int min, int max);
 	std::string GetString(const std::string& Prompt);
 	bool GetBool(const std::string& Prompt);
 
 protected:
-	std::vector<UMenuPosition*> GenerateMenuPositions();
-protected:
 	
+protected:
+
+	int GetID();
+	std::vector<UMenuPosition*> GenerateMenuPositions();
 
 	void StartCycle();
 	void Select(uint16_t& index, bool& undo);
@@ -98,6 +98,8 @@ protected:
 
 	bool IsGroupConnected(class UGroup* group);
 	bool IsDepartmentConnected(class UDepartment* deparment);
+
+	void FastDebug();
 
 	template<typename T>
 	T* SelectInstance(UInstanceManager<T>* instanceManager, std::function<void()> DrawFunc, uint16_t& Position, bool& undo)
@@ -131,5 +133,7 @@ public:
 	UMenu* GetMenu() const;
 	UManager* GetManager() const;
 	void Run();
+	void Save();
+	void Load();
 };
 

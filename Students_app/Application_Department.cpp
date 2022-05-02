@@ -14,7 +14,7 @@ void UApplication::Department_Add()
 	std::string input = GetString(ApplicationMessages::Departments::MSG_Enter);
 
 	FDepartment info(input);
-	UDepartment* department = UDepartment::CreateDepartment(info);
+	UDepartment* department = UDepartment::CreateDepartment(info, GetID());
 	Manager->GetDepartmentManager()->AddInstance(department);
 
 	Menu->Print(String::format("Department %s created\n", department->GetData().Title.c_str()));

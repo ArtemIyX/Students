@@ -16,7 +16,7 @@ public:
 	class UDepartment* Department;
 };
 
-class UStudent : UEntity
+class UStudent : public UEntity
 {
 public:
 
@@ -27,6 +27,6 @@ protected:
 	FStudent Data;
 public:
 	FStudent& GetData();
-	static UStudent* CreateStudent(const FStudent& InData);
+	static UStudent* CreateStudent(const FStudent& InData, int id);
 };
 

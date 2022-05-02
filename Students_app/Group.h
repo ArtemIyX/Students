@@ -10,10 +10,9 @@ public:
 	FGroup(std::string Title);
 public:
 	std::string Title;
-	//friend std::ostream& operator<<(std::ostream& os, const FGroup& group);
 };
 
-class UGroup : UEntity
+class UGroup : public UEntity
 {
 public:
 
@@ -24,5 +23,5 @@ protected:
 	FGroup Data;
 public:
 	FGroup& GetData();
-	static UGroup* CreateGroup(const FGroup& InData);
+	static UGroup* CreateGroup(const FGroup& InData, int id);
 };

@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Исходные файлы\Core">
-      <UniqueIdentifier>{1e58ea20-a31d-4402-a6f4-19c57513df48}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\Data">
-      <UniqueIdentifier>{0d7452a0-b4c7-452c-bfaf-96e5e3e2aba5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Исходные файлы\Public">
       <UniqueIdentifier>{e1db3d53-799e-4643-9f11-9467333cd2ea}</UniqueIdentifier>
     </Filter>
@@ -81,6 +75,9 @@
     <ClCompile Include="Entity.cpp">
       <Filter>Исходные файлы\Private\Misc</Filter>
     </ClCompile>
+    <ClCompile Include="Saver.cpp">
+      <Filter>Исходные файлы\Private\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Group.h">
@@ -115,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Исходные файлы\Public\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Saver.h">
+      <Filter>Исходные файлы\Public\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

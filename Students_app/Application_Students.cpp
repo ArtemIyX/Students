@@ -42,7 +42,7 @@ void UApplication::Student_Add()
 	if (undo)
 		return;
 
-	UStudent* student = UStudent::CreateStudent(FStudent(name, age, group, dep));
+	UStudent* student = UStudent::CreateStudent(FStudent(name, age, group, dep), GetID());
 	if (!Manager->GetStudentsManager()->AddInstance(student))
 	{
 		delete student;
@@ -65,11 +65,11 @@ void UApplication::Student_Show()
 	for (size_t i = 0; i < students.size(); ++i)
 	{
 		FStudent& data = students[i]->GetData();
-		Menu->Print(String::format("[%d]\t%s %d years (%s - %s)\n", i + 1,
+		Menu->Print(String::format("[%d]\t%s %dy.o.\t(%s - %s)\tid%d\n", i + 1,
 			data.FullName.c_str(),
 			data.Age,
 			data.Group->GetData().Title.c_str(),
-			data.Department->GetData().Title.c_str()));
+			data.Department->GetData().Title.c_str(), students[i]->ID));
 	}
 
 }
