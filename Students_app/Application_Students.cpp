@@ -62,6 +62,12 @@ void UApplication::Student_Show()
 		return;
 	}
 	const std::vector<UStudent*> students = Manager->GetStudentsManager()->GetAllInstances();
+	Students_Show_Vector(students);
+
+}
+
+void UApplication::Students_Show_Vector(const std::vector<UStudent*>& students)
+{
 	for (size_t i = 0; i < students.size(); ++i)
 	{
 		FStudent& data = students[i]->GetData();
@@ -71,7 +77,6 @@ void UApplication::Student_Show()
 			data.Group->GetData().Title.c_str(),
 			data.Department->GetData().Title.c_str(), students[i]->ID));
 	}
-
 }
 
 void UApplication::Student_Remove()

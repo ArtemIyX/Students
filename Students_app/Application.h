@@ -78,9 +78,11 @@ protected:
 	void Group_Section();
 	void Group_Add();
 	void Group_Show();
+
 	void Group_Remove();
 	void Group_Edit();
 	bool Group_Check();
+	void Group_Students();
 
 	void Department_Section();
 	void Department_Add();
@@ -92,6 +94,7 @@ protected:
 	void Student_Section();
 	void Student_Add();
 	void Student_Show();
+	void Students_Show_Vector(const std::vector<class UStudent*>& students);
 	void Student_Remove();
 	void Student_Edit();
 	bool Student_Check();
@@ -99,7 +102,9 @@ protected:
 	bool IsGroupConnected(class UGroup* group);
 	bool IsDepartmentConnected(class UDepartment* deparment);
 
+#ifdef DEBUG
 	void FastDebug();
+#endif // DEBUG
 
 	template<typename T>
 	T* SelectInstance(UInstanceManager<T>* instanceManager, std::function<void()> DrawFunc, uint16_t& Position, bool& undo)

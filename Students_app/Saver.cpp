@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iostream>
 #include <nlohmann/json.hpp>
+
 void to_json(nlohmann::json& j, const SStudent& s)
 {
 	j = {

@@ -37,13 +37,14 @@ std::vector<UMenuPosition*> UApplication::GenerateMenuPositions()
 		FMenuFunction("Students", std::bind(&UApplication::Student_Section, this)),
 		FMenuFunction("Save", std::bind(&UApplication::Save, this)),
 		FMenuFunction("Load", std::bind(&UApplication::Load, this)),
-		FMenuFunction("Fast debug", std::bind(&UApplication::FastDebug, this)) },
+		/*FMenuFunction("Fast debug", std::bind(&UApplication::FastDebug, this))*/},
 		"Main menu", nullptr);
 	UMenuPosition* Groups = UMenuPosition::CreateMenuPosition(
 		{ FMenuFunction("Show list of groups", [this]() { Group_Show();  Menu->Wait(); }),
 		FMenuFunction("Add new group", std::bind(&UApplication::Group_Add, this)),
 		FMenuFunction("Remove group", std::bind(&UApplication::Group_Remove, this)),
-		FMenuFunction("Edit group", std::bind(&UApplication::Group_Edit, this)) },
+		FMenuFunction("Edit group", std::bind(&UApplication::Group_Edit, this)),
+		FMenuFunction("Show students in group", std::bind(&UApplication::Group_Students, this)) },
 		"Groups", MainMenu);
 	UMenuPosition* Departments = UMenuPosition::CreateMenuPosition(
 		{ FMenuFunction("Show list of departments", [this]() { Department_Show();  Menu->Wait(); }),
@@ -231,6 +232,8 @@ bool UApplication::IsDepartmentConnected(UDepartment* deparment)
 	return false;
 }
 
+#ifdef DEBUG
+
 void UApplication::FastDebug()
 {
 	GetManager()->GetGroupManager()->AddInstance(UGroup::CreateGroup(FGroup("Debug_group_1"), GetID()));
@@ -241,7 +244,7 @@ void UApplication::FastDebug()
 	GetManager()->GetStudentsManager()->AddInstance(UStudent::CreateStudent(f, GetID()));
 }
 
-
+#endif // DEBUG
 
 
 
