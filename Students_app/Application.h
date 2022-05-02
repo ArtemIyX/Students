@@ -89,6 +89,7 @@ protected:
 	void Department_Show();
 	void Department_Remove();
 	void Department_Edit();
+	void Department_Students();
 	bool Department_Check();
 
 	void Student_Section();

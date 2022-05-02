@@ -3,6 +3,7 @@
 #include "MenuPosition.h"
 #include "Department.h"
 #include "Tools.h"
+#include "Student.h"
 
 void UApplication::Department_Section()
 {
@@ -83,6 +84,44 @@ void UApplication::Department_Edit()
 	FDepartment& data = dep->GetData();
 	data.Title = input;
 	Menu->Print(ApplicationMessages::Departments::MSG_Edit);
+	Menu->Wait();
+}
+
+void UApplication::Department_Students()
+{
+	if (!Department_Check()) {
+		Menu->Print(ApplicationMessages::Departments::MSG_No);
+		Menu->Wait();
+		return;
+	}
+	uint16_t index = 0;
+	bool undo = false;
+	UInstanceManager<UDepartment>* departmentManager = Manager->GetDepartmentManager();
+	UDepartment* dep = SelectInstance<UDepartment>(departmentManager, std::bind(&UApplication::Department_Show, this), index, undo);
+	if (undo)
+	{
+		return;
+	}
+	std::vector<UStudent*> students = GetManager()->GetStudentsManager()->GetAllInstances();
+	std::vector<UStudent*> result;
+	for (UStudent* st : students)
+	{
+		if (st)
+		{
+			if (st->GetData().Department == dep)
+			{
+				result.push_back(st);
+			}
+		}
+	}
+	if (result.size() == 0)
+	{
+		Menu->Print(ApplicationMessages::Student::MSG_No);
+	}
+	else
+	{
+		Students_Show_Vector(students);
+	}
 	Menu->Wait();
 }
 

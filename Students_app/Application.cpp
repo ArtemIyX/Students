@@ -50,7 +50,8 @@ std::vector<UMenuPosition*> UApplication::GenerateMenuPositions()
 		{ FMenuFunction("Show list of departments", [this]() { Department_Show();  Menu->Wait(); }),
 		FMenuFunction("Add new department", std::bind(&UApplication::Department_Add, this)),
 		FMenuFunction("Remove department", std::bind(&UApplication::Department_Remove, this)),
-		FMenuFunction("Edit department", std::bind(&UApplication::Department_Edit, this)) },
+		FMenuFunction("Edit department", std::bind(&UApplication::Department_Edit, this)),
+		FMenuFunction("Show students in department", std::bind(&UApplication::Department_Students, this)) },
 		"Departments", MainMenu);
 	UMenuPosition* Students = UMenuPosition::CreateMenuPosition(
 		{ FMenuFunction("Show list of students", [this]() { Student_Show();  Menu->Wait(); }),
